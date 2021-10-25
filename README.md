@@ -1,7 +1,7 @@
 # What
 SystemH is an attempt to bring the .Net framework to C++, only without the .Net using just C++11 native code. All (ok, 'most') code is well tested, both functionally and for performance. Compared to equivalent .Net code you can expect on average a 10-20% increase in performance, athough in some cases like with System::Collections::Generic::Dictionary it can be over twice as fast.
 # Usage
-Simpy include the System.h file in your project and start using all your favorite .Net classes like String, Func, Tuple, List, Dictionary, DateTime, Thread and many more. 
+Simply include the System.h file in your project and start using all your favorite .Net classes like String, Func, Tuple, List, Dictionary, DateTime, Thread and many more. 
 Here's a simple example to get you started, the C# code:
 
 ```C#
