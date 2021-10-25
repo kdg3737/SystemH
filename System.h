@@ -1481,6 +1481,8 @@ namespace System {
 			return (this->od != null);
 		}
 
+
+
 		char16_t operator[](int const index) const
 		{
 			char16_t* ptr = (char16_t*)(((byte*)this->od) + sizeof(ObjectData));
@@ -1863,6 +1865,25 @@ namespace System {
 		String ret(c1);
 		ret += c2;
 		return ret;
+	}
+
+	bool operator<(String const & lhs, String const & rhs)
+	{
+		if (lhs == null || rhs == null)
+			return false;
+		int len = rhs.Length;
+		if (len > lhs.Length) {
+			len = lhs.Length;
+		}
+		char16_t* ptr = (char16_t*)(((byte*)lhs.od) + sizeof(String::ObjectData));
+		char16_t* ptr2 = (char16_t*)(((byte*)rhs.od) + sizeof(String::ObjectData));
+		for (int i = 0; i < len; i++) {
+			if (*ptr != *ptr2) {
+				return *ptr < *ptr2;
+			}
+		}
+
+		return false;
 	}
 
 	String operator+(String&& c1, const char16_t c2)
@@ -10050,13 +10071,13 @@ namespace System {
 					virtual int Compare(const T& x, const T& y) const {
 						if (x < y)
 							return -1;
-						return x > y ? 1 : 0;
+						return x == y ? 0 : 1;
 					}
 
 					static int Compare_static(const T& x, const T& y) {
 						if (x < y)
 							return -1;
-						return x > y ? 1 : 0;
+						return x == y ? 0 : 1;
 					}
 
 					virtual typename IComparer<T>::CompareFN* GetFP_Compare() const {
